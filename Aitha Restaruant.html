@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aitha Restaurant – Exquisite Dining Experiences</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --dark: #1A1208;
+    --dark2: #2C1F0A;
+    --cream: #FAF6EE;
+    --cream2: #F2EBD9;
+    --text: #3D2E10;
+    --text-muted: #7A6340;
+    --border: rgba(201,168,76,0.25);
+    --red: #C94C4C;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(26,18,8,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem; height: 70px;
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); letter-spacing: 0.04em; }
+  .logo span { color: #fff; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { background: var(--gold); color: var(--dark) !important; padding: 0.5rem 1.4rem; border-radius: 2px; font-weight: 500 !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--dark) !important; }
+  .admin-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold) !important; padding: 0.4rem 1.2rem; border-radius: 2px; cursor: pointer; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* HERO */
+  #hero {
+    height: 100vh; min-height: 700px;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 60%, #3D2000 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 2rem; }
+  .hero-tag { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 5.5rem); color: #fff; line-height: 1.05; margin-bottom: 1.5rem; }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 0.85rem 2.2rem; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline { background: transparent; color: #fff; padding: 0.85rem 2.2rem; border: 1px solid rgba(255,255,255,0.35); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-divider { display: flex; gap: 3rem; justify-content: center; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); }
+  .hero-stat .lbl { font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 4rem; }
+  .section-tag { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--dark); line-height: 1.15; margin-bottom: 1rem; }
+  .section-sub { color: var(--text-muted); max-width: 520px; line-height: 1.7; font-size: 0.95rem; }
+  .center { text-align: center; }
+  .center .section-sub { margin: 0 auto 3rem; }
+
+  /* SERVICES */
+  #services { background: var(--dark); }
+  #services .section-title { color: #fff; }
+  #services .section-tag { color: var(--gold); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; margin-top: 3.5rem; background: var(--border); }
+  .service-card { background: var(--dark2); padding: 2.5rem 2rem; transition: background 0.2s; cursor: pointer; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.3s; }
+  .service-card:hover::after { width: 100%; }
+  .service-card:hover { background: #3D2000; }
+  .svc-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .svc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #fff; margin-bottom: 0.6rem; }
+  .svc-desc { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+  .svc-price { margin-top: 1rem; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.05em; }
+
+  /* ABOUT */
+  #about { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img { position: relative; }
+  .about-img-main { width: 100%; height: 420px; background: linear-gradient(135deg, var(--dark) 0%, #5A3A00 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+  .about-img-main .big-icon { font-size: 8rem; opacity: 0.6; }
+  .about-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: var(--gold); padding: 1.5rem; text-align: center; border-radius: 2px; }
+  .about-badge .years { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--dark); font-weight: 600; }
+  .about-badge .lbl { font-size: 0.7rem; color: var(--dark2); letter-spacing: 0.1em; text-transform: uppercase; }
+  .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+  .feat-item { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .feat-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .feat-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* BOOKING */
+  #booking { background: var(--cream2); }
+  .booking-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+  .booking-info { }
+  .booking-steps { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .step { display: flex; gap: 1rem; }
+  .step-num { width: 32px; height: 32px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--gold); flex-shrink: 0; }
+  .step-txt strong { display: block; font-size: 0.92rem; color: var(--dark); margin-bottom: 0.2rem; }
+  .step-txt p { font-size: 0.82rem; color: var(--text-muted); }
+  .booking-form { background: #fff; padding: 2.5rem; border-radius: 4px; box-shadow: 0 4px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+  .booking-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--dark); margin-bottom: 1.5rem; }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-group label { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 0.75rem 1rem; border: 1px solid #e8e0d0; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--dark); background: var(--cream); transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .submit-btn { width: 100%; background: var(--dark); color: #fff; padding: 1rem; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; margin-top: 0.5rem; }
+  .submit-btn:hover { background: var(--dark2); }
+  .success-msg { display: none; background: #e8f5e9; border: 1px solid #66bb6a; color: #2e7d32; padding: 1rem; border-radius: 4px; font-size: 0.88rem; text-align: center; margin-top: 1rem; }
+
+  /* PAYMENT */
+  #payment { background: var(--dark); }
+  #payment .section-title { color: #fff; }
+  #payment .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto 3rem; }
+  .payment-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; }
+  .pay-badge { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.8rem; display: flex; align-items: center; gap: 0.7rem; color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+  .pay-badge .icon { font-size: 1.4rem; }
+  .payment-form { max-width: 560px; margin: 0 auto; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem; }
+  .payment-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: #fff; margin-bottom: 1.5rem; }
+  .payment-form .form-group label { color: rgba(255,255,255,0.5); }
+  .payment-form .form-group input, .payment-form .form-group select { background: rgba(255,255,255,0.06); border-color: rgba(201,168,76,0.25); color: #fff; }
+  .payment-form .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+  .pay-methods { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+  .pay-method { flex: 1; padding: 0.6rem; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; text-align: center; font-size: 0.78rem; color: rgba(255,255,255,0.5); transition: all 0.2s; }
+  .pay-method.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+  .pay-btn { width: 100%; background: var(--gold); color: var(--dark); padding: 1rem; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 2px; margin-top: 0.5rem; }
+  .pay-btn:hover { background: var(--gold-light); }
+  .secure-note { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.75rem; margin-top: 1rem; }
+
+  /* CONTACT */
+  #contact { background: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; }
+  .contact-details { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .contact-icon { width: 44px; height: 44px; background: var(--gold); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .contact-item strong { display: block; font-size: 0.88rem; color: var(--dark); margin-bottom: 0.2rem; }
+  .contact-item p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+  .contact-form { background: #fff; padding: 2.5rem; border-radius: 4px; border: 1px solid var(--border); }
+  .contact-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--dark); margin-bottom: 1.5rem; }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 3rem 4rem 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+  .footer-brand .logo { font-size: 1.5rem; }
+  .footer-brand p { font-size: 0.83rem; color: rgba(255,255,255,0.4); margin-top: 0.8rem; line-height: 1.6; max-width: 250px; }
+  .footer-col h4 { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .footer-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+
+  /* ADMIN OVERLAY */
+  #admin-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: var(--cream); overflow-y: auto;
+  }
+  .admin-nav {
+    background: var(--dark); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10;
+  }
+  .admin-nav .logo { font-size: 1.4rem; }
+  .admin-nav span { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+  .close-admin { background: none; border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 0.4rem 1rem; border-radius: 2px; cursor: pointer; font-size: 0.8rem; }
+  .admin-body { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 58px); }
+  .admin-sidebar { background: #fff; border-right: 1px solid #e8e0d0; padding: 1.5rem 0; }
+  .admin-sidebar .user-info { padding: 0 1.5rem 1.5rem; border-bottom: 1px solid #e8e0d0; margin-bottom: 1rem; }
+  .admin-sidebar .user-info strong { display: block; font-size: 0.9rem; color: var(--dark); }
+  .admin-sidebar .user-info span { font-size: 0.78rem; color: var(--text-muted); }
+  .sidebar-menu { list-style: none; }
+  .sidebar-menu li a { display: flex; align-items: center; gap: 0.7rem; padding: 0.65rem 1.5rem; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; transition: all 0.15s; border-left: 3px solid transparent; }
+  .sidebar-menu li a:hover, .sidebar-menu li a.active { background: var(--cream2); color: var(--dark); border-left-color: var(--gold); }
+  .admin-main { padding: 2rem; background: var(--cream); }
+  .admin-section { display: none; }
+  .admin-section.active { display: block; }
+  .admin-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--dark); margin-bottom: 1.5rem; }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+  .stat-card { background: #fff; border: 1px solid #e8e0d0; border-radius: 4px; padding: 1.2rem 1.5rem; }
+  .stat-card .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--dark); }
+  .stat-card .stat-lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .stat-card .stat-delta { font-size: 0.75rem; color: #2e7d32; margin-top: 0.2rem; }
+  .admin-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid #e8e0d0; font-size: 0.85rem; }
+  .admin-table th { background: var(--cream2); padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; }
+  .admin-table td { padding: 0.85rem 1rem; border-top: 1px solid #f0ebe0; color: var(--text); }
+  .admin-table tr:hover td { background: var(--cream); }
+  .badge { display: inline-block; padding: 0.2rem 0.65rem; border-radius: 20px; font-size: 0.72rem; font-weight: 500; }
+  .badge-pending { background: #FFF3E0; color: #E65100; }
+  .badge-confirmed { background: #E8F5E9; color: #2E7D32; }
+  .badge-paid { background: #E3F2FD; color: #1565C0; }
+  .badge-cancelled { background: #FFEBEE; color: #C62828; }
+  .table-action { background: none; border: 1px solid #e8e0d0; padding: 0.3rem 0.7rem; border-radius: 2px; font-size: 0.75rem; cursor: pointer; color: var(--text-muted); margin-right: 4px; }
+  .table-action:hover { border-color: var(--gold); color: var(--gold); }
+  .admin-login { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: var(--dark); flex-direction: column; gap: 0; }
+  .login-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 4px; padding: 3rem 2.5rem; width: 360px; }
+  .login-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #fff; margin-bottom: 0.4rem; text-align: center; }
+  .login-card p { font-size: 0.83rem; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 2rem; }
+  .login-card .form-group label { color: rgba(255,255,255,0.5); font-size: 0.75rem; }
+  .login-card .form-group input { background: rgba(255,255,255,0.07); border-color: var(--border); color: #fff; }
+  .login-btn { width: 100%; background: var(--gold); color: var(--dark); padding: 0.9rem; border: none; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.08em; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; border-radius: 2px; margin-top: 0.5rem; }
+  .err-msg { color: #ef5350; font-size: 0.8rem; text-align: center; margin-top: 0.5rem; display: none; }
+  .chart-bar-wrap { background: #fff; border: 1px solid #e8e0d0; border-radius: 4px; padding: 1.5rem; margin-top: 1.5rem; }
+  .chart-bar-wrap h4 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 0.7rem; height: 120px; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+  .bar { width: 100%; border-radius: 2px 2px 0 0; background: var(--gold); opacity: 0.75; transition: opacity 0.2s; }
+  .bar:hover { opacity: 1; }
+  .bar-lbl { font-size: 0.7rem; color: var(--text-muted); }
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .add-btn { background: var(--gold); color: var(--dark); border: none; padding: 0.55rem 1.2rem; border-radius: 2px; font-size: 0.8rem; font-weight: 500; cursor: pointer; letter-spacing: 0.05em; }
+  .menu-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+  .menu-card { background: #fff; border: 1px solid #e8e0d0; border-radius: 4px; padding: 1.2rem; }
+  .menu-card .mc-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .menu-card h4 { font-size: 0.9rem; color: var(--dark); margin-bottom: 0.3rem; }
+  .menu-card p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+  .menu-card .mc-price { font-size: 0.85rem; color: var(--gold); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">Aitha <span>Restaurant</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#booking">Book Now</a></li>
+    <li><a href="#payment">Payment</a></li>
+    <li><a href="#contact">Contact</a></li>
+   
+    <li><a href="#booking" class="nav-cta">Get Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-tag">Premium Catering Since 2026</p>
+    <h1 class="hero-title">Exquisite Flavours<br>for Every <em>Occasion</em></h1>
+    <p class="hero-sub">From intimate gatherings to grand celebrations, Aitha Restaurant crafts unforgettable culinary experiences tailored to your vision.</p>
+    <div class="btn-row">
+      <a href="#booking" class="btn-primary">Book an Event</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+    <div class="hero-divider">
+      <div class="hero-stat"><div class="num">50+</div><div class="lbl">Events Catered</div></div>
+      <div class="hero-stat"><div class="num">50+</div><div class="lbl">Cuisines Offered</div></div>
+      <div class="hero-stat"><div class="num">2026</div><div class="lbl">Est. This Year</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="center">
+    <p class="section-tag" style="color:var(--gold)">What We Offer</p>
+    <h2 class="section-title" style="color:#fff">Our Catering Services</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.45);margin:0 auto 0;">We specialise in a wide range of catering services crafted to perfection for every event type.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon">🍽️</div>
+      <div class="svc-name">Wedding Catering</div>
+      <div class="svc-desc">Elegant multi-course menus, live stations, champagne receptions, and bespoke wedding cakes for your most special day.</div>
+      <div class="svc-price">From £45 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🏢</div>
+      <div class="svc-name">Corporate Events</div>
+      <div class="svc-desc">Business lunches, board meeting catering, product launches, team dinners — professional and punctual service every time.</div>
+      <div class="svc-price">From £22 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🎉</div>
+      <div class="svc-name">Private Parties</div>
+      <div class="svc-desc">Birthday parties, anniversaries, baby showers, and family gatherings with custom menus tailored to your taste.</div>
+      <div class="svc-price">From £30 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🍛</div>
+      <div class="svc-name">Indian & Asian Cuisine</div>
+      <div class="svc-desc">Authentic South Asian curries, tandoori dishes, biryanis, and fusion menus bringing rich cultural flavours to your table.</div>
+      <div class="svc-price">From £28 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🥗</div>
+      <div class="svc-name">Buffet & Live Stations</div>
+      <div class="svc-desc">Interactive live cooking stations — carving, wok, pasta, chaat — bringing theatre and freshness to your event floor.</div>
+      <div class="svc-price">From £35 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🥂</div>
+      <div class="svc-name">Cocktail & Canape Receptions</div>
+      <div class="svc-desc">Stylish canape selections, artisan cocktails, and drinks reception packages perfect for networking or pre-dinner drinks.</div>
+      <div class="svc-price">From £18 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🚐</div>
+      <div class="svc-name">Outdoor & Festival Catering</div>
+      <div class="svc-desc">Garden parties, festivals, outdoor weddings — we bring the kitchen to you with full set-up and service teams.</div>
+      <div class="svc-price">From £32 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🌿</div>
+      <div class="svc-name">Vegan & Special Diets</div>
+      <div class="svc-desc">Dedicated plant-based menus, gluten-free, halal, and allergen-managed options for every dietary requirement.</div>
+      <div class="svc-price">From £25 per person</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🎂</div>
+      <div class="svc-name">Dessert & Sweet Tables</div>
+      <div class="svc-desc">Spectacular dessert displays, mithai platters, chocolate fountains, and bespoke cake commissions for the sweetest moments.</div>
+      <div class="svc-price">From £12 per person</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#fff;padding:7rem 5rem;">
+
+  <!-- TAG + HEADING centred -->
+  <div style="text-align:center;margin-bottom:5rem;">
+    <p class="section-tag">Our Story</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,3.8rem);color:var(--dark);line-height:1.1;margin-bottom:1.2rem;">Passion on Every Plate</h2>
+    <div style="width:60px;height:2px;background:var(--gold);margin:0 auto 2rem;border-radius:2px;"></div>
+    <p style="font-size:1rem;color:var(--text-muted);max-width:680px;margin:0 auto;line-height:1.8;">Founded by Deepu in 2026, we began as a small family kitchen serving community events. Today, we are one of the region's most trusted catering companies — delivering events across weddings, corporate functions, and private celebrations.</p>
+  </div>
+
+  <!-- TIMELINE JOURNEY -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:5rem;border:1px solid #ede6d8;border-radius:6px;overflow:hidden;">
+    <div style="padding:2rem 1.8rem;border-right:1px solid #ede6d8;position:relative;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold);font-weight:600;line-height:1;">2026</div>
+      <div style="width:30px;height:2px;background:var(--gold);margin:0.8rem 0;opacity:0.5;"></div>
+      <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.4rem;">The Beginning</p>
+      <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;">Started as a small family kitchen serving local community celebrations in Birmingham.</p>
+    </div>
+    <div style="padding:2rem 1.8rem;border-right:1px solid #ede6d8;background:var(--cream);">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold);font-weight:600;line-height:1;">2026</div>
+      <div style="width:30px;height:2px;background:var(--gold);margin:0.8rem 0;opacity:0.5;"></div>
+      <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.4rem;">Going Professional</p>
+      <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;">Opened our first commercial kitchen, expanded to corporate events and achieved 5-star hygiene rating.</p>
+    </div>
+    <div style="padding:2rem 1.8rem;border-right:1px solid #ede6d8;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold);font-weight:600;line-height:1;">2026</div>
+      <div style="width:30px;height:2px;background:var(--gold);margin:0.8rem 0;opacity:0.5;"></div>
+      <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.4rem;">Our Vision</p>
+      <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;">Building a full brigade of culinary professionals to serve weddings, corporates and celebrations across the UK.</p>
+    </div>
+    <div style="padding:2rem 1.8rem;background:var(--dark);">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold);font-weight:600;line-height:1;">Today</div>
+      <div style="width:30px;height:2px;background:var(--gold);margin:0.8rem 0;opacity:0.5;"></div>
+      <p style="font-size:0.88rem;font-weight:500;color:#fff;margin-bottom:0.4rem;">1,200+ Events</p>
+      <p style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.6;">Trusted by thousands of families, brands, and organisations for unforgettable culinary experiences.</p>
+    </div>
+  </div>
+
+  <!-- CONTENT SPLIT: text left, credentials right -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+
+    <!-- LEFT: story text -->
+    <div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--dark);margin-bottom:1.2rem;line-height:1.25;">A Team of 40+ Culinary Professionals</h3>
+      <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.2rem;">Our brigade brings together expertise across Indian, Continental, Mediterranean, and fusion cuisines — ensuring every event reflects the host's personality and the guests' delight. From the first consultation to the final dessert, we handle every detail with care.</p>
+      <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:2rem;">We don't just cater events — we craft memories. Whether it's an intimate dinner for 20 or a grand wedding for 600, every plate carries the warmth of a family kitchen and the precision of a professional brigade.</p>
+
+      <!-- founder quote block -->
+      <div style="border-left:3px solid var(--gold);padding:1.2rem 1.5rem;background:var(--cream);border-radius:0 4px 4px 0;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--dark);font-style:italic;line-height:1.5;margin-bottom:0.6rem;">"Food is how we show love. Every event is personal to us — we treat your guests as our own family."</p>
+        <p style="font-size:0.78rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">— Deepu, Founder &amp; Head Chef</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: credential cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:var(--cream);border:1px solid #ede6d8;border-radius:6px;padding:1.4rem 1.2rem;">
+        <div style="font-size:1.8rem;margin-bottom:0.7rem;">🌿</div>
+        <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">Locally Sourced</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">Seasonal, fresh ingredients from trusted regional suppliers.</p>
+      </div>
+      <div style="background:var(--cream);border:1px solid #ede6d8;border-radius:6px;padding:1.4rem 1.2rem;">
+        <div style="font-size:1.8rem;margin-bottom:0.7rem;">🎯</div>
+        <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">Event Coordinators</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">Dedicated coordinators guiding you from planning to service.</p>
+      </div>
+      <div style="background:var(--cream);border:1px solid #ede6d8;border-radius:6px;padding:1.4rem 1.2rem;">
+        <div style="font-size:1.8rem;margin-bottom:0.7rem;">🍽️</div>
+        <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">Crockery &amp; Linen Hire</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">Full tableware, glassware, and premium linen provided.</p>
+      </div>
+      <div style="background:var(--cream);border:1px solid #ede6d8;border-radius:6px;padding:1.4rem 1.2rem;">
+        <div style="font-size:1.8rem;margin-bottom:0.7rem;">👔</div>
+        <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">Professional Staff</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">Uniformed, trained serving staff for a seamless experience.</p>
+      </div>
+      <div style="background:var(--dark);border-radius:6px;padding:1.4rem 1.2rem;">
+        <div style="font-size:1.8rem;margin-bottom:0.7rem;">☪️</div>
+        <p style="font-size:0.88rem;font-weight:500;color:#fff;margin-bottom:0.3rem;">Halal Certified</p>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.55;">Fully halal and allergen-managed kitchen for every dietary need.</p>
+      </div>
+      <div style="background:var(--gold);border-radius:6px;padding:1.4rem 1.2rem;">
+        <div style="font-size:1.8rem;margin-bottom:0.7rem;">⭐</div>
+        <p style="font-size:0.88rem;font-weight:500;color:var(--dark);margin-bottom:0.3rem;">5-Star Hygiene Rated</p>
+        <p style="font-size:0.78rem;color:var(--dark2);line-height:1.55;">Awarded the highest food hygiene rating by local authority inspectors.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="booking-grid">
+    <div class="booking-info">
+      <p class="section-tag">Reserve Your Date</p>
+      <h2 class="section-title">Book Your Event</h2>
+      <p class="section-sub">Tell us about your event and we'll craft a bespoke menu proposal within 24 hours. No commitment required for your initial enquiry.</p>
+      <div class="booking-steps">
+        <div class="step"><div class="step-num">1</div><div class="step-txt"><strong>Submit Your Enquiry</strong><p>Fill in your event details in the form</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-txt"><strong>Receive a Custom Proposal</strong><p>We'll send a detailed menu & pricing within 24 hrs</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-txt"><strong>Tasting Session</strong><p>Come for a complimentary tasting at our kitchen</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-txt"><strong>Confirm & Pay Deposit</strong><p>Secure your date with a 20% deposit</p></div></div>
+      </div>
+    </div>
+    <div class="booking-form">
+      <h3>Event Enquiry Form</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+44 7700 000000">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Event Type</label>
+          <select>
+            <option>Wedding</option>
+            <option>Corporate Event</option>
+            <option>Private Party</option>
+            <option>Birthday</option>
+            <option>Outdoor / Festival</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Number of Guests</label>
+          <input type="number" placeholder="e.g. 120">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Event Date</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Budget Range</label>
+          <select>
+            <option>Under £1,000</option>
+            <option>£1,000 – £3,000</option>
+            <option>£3,000 – £7,000</option>
+            <option>£7,000 – £15,000</option>
+            <option>£15,000+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Special Requirements</label>
+        <textarea placeholder="Dietary needs, cuisine preferences, venue details..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitBooking()">Submit Enquiry</button>
+      <div class="success-msg" id="booking-success">✓ Thank you! We'll be in touch within 24 hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="payment">
+  <div class="center">
+    <p class="section-tag">Secure Payments</p>
+    <h2 class="section-title">Easy & Secure Payment</h2>
+    <p class="section-sub">We accept all major payment methods for your convenience. All transactions are encrypted and secure.</p>
+  </div>
+  <div class="payment-cards">
+    <div class="pay-badge"><span class="icon">🅿️</span> PayPal</div>
+    <div class="pay-badge"><span class="icon">💳</span> Stripe</div>
+    <div class="pay-badge"><span class="icon">💳</span> Visa</div>
+    <div class="pay-badge"><span class="icon">💳</span> Mastercard</div>
+    <div class="pay-badge"><span class="icon">💳</span> Amex</div>
+    <div class="pay-badge"><span class="icon">💳</span> Discover</div>
+    <div class="pay-badge"><span class="icon">📱</span> Apple Pay</div>
+    <div class="pay-badge"><span class="icon">📱</span> Google Pay</div>
+    <div class="pay-badge"><span class="icon">🏦</span> Bank Transfer</div>
+  </div>
+  <div class="payment-form">
+    <h3>Make a Payment</h3>
+    <div class="form-group">
+      <label>Payment Method</label>
+      <div class="pay-methods">
+        <div class="pay-method active" onclick="selectPay(this)">💳 Card</div>
+        <div class="pay-method" onclick="selectPay(this)">🅿️ PayPal</div>
+        <div class="pay-method" onclick="selectPay(this)">📱 Apple Pay</div>
+        <div class="pay-method" onclick="selectPay(this)">🏦 Bank Transfer</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Booking Reference</label>
+      <input type="text" placeholder="DC-2024-XXXX" style="background:rgba(255,255,255,0.06);border-color:rgba(201,168,76,0.25);color:#fff;">
+    </div>
+    <div class="form-group">
+      <label>Cardholder Name</label>
+      <input type="text" placeholder="Name on card" style="background:rgba(255,255,255,0.06);border-color:rgba(201,168,76,0.25);color:#fff;">
+    </div>
+    <div class="form-group">
+      <label>Card Number</label>
+      <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19" style="background:rgba(255,255,255,0.06);border-color:rgba(201,168,76,0.25);color:#fff;">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Expiry Date</label>
+        <input type="text" placeholder="MM / YY" style="background:rgba(255,255,255,0.06);border-color:rgba(201,168,76,0.25);color:#fff;">
+      </div>
+      <div class="form-group">
+        <label>CVV</label>
+        <input type="text" placeholder="•••" maxlength="4" style="background:rgba(255,255,255,0.06);border-color:rgba(201,168,76,0.25);color:#fff;">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Amount (£)</label>
+      <input type="number" placeholder="0.00" style="background:rgba(255,255,255,0.06);border-color:rgba(201,168,76,0.25);color:#fff;">
+    </div>
+    <button class="pay-btn" onclick="submitPayment()">Pay Securely</button>
+    <p class="secure-note">🔒 256-bit SSL encryption · PCI-DSS Compliant · Your data is never stored</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-tag">Get In Touch</p>
+      <h2 class="section-title">Contact Aitha Restaurant</h2>
+      <p class="section-sub">Have a question or want to discuss your event? Our team is ready to help you plan the perfect catering experience.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div><strong>Our Kitchen</strong><p>371A Eastern Avenue, Ilford, IG2 6NE, United Kingdom</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div><strong>Phone</strong><p>+44 7466216721<br>Mon–Sat, 9am – 7pm</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div><strong>Email</strong><p>d47746551@gmail.com<br></p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏰</div>
+          <div><strong>Hours</strong><p>Monday – Saturday: 9:00am – 8:00pm<br>Sunday: 10:00am – 4:00pm</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Subject</label><select><option>General Enquiry</option><option>Booking Query</option><option>Menu Information</option><option>Pricing</option><option>Feedback</option><option>Other</option></select></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="How can we help you?" style="min-height:120px;"></textarea></div>
+      <button class="submit-btn" onclick="submitContact()">Send Message</button>
+      <div class="success-msg" id="contact-success">✓ Message sent! We'll reply within 2 business hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Aitha <span>Restaurant</span></div>
+      <p>Crafting unforgettable culinary experiences across the UK since 2008. Excellence in every plate we serve.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">Wedding Catering</a>
+      <a href="#services">Corporate Events</a>
+      <a href="#services">Private Parties</a>
+      <a href="#services">Indian Cuisine</a>
+      <a href="#services">Buffet Stations</a>
+      <a href="#services">Dessert Tables</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About Us</a>
+      <a href="#booking">Book an Event</a>
+      <a href="#contact">Contact Us</a>
+      <a href="#payment">Payment</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Twitter / X</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">TripAdvisor</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Aitha Restaurant Ltd. All rights reserved.</p>
+    <p>🔒 Secure Payments · 5-Star Food Hygiene Rated</p>
+  </div>
+</footer>
+
+<!-- ADMIN OVERLAY -->
+<div id="admin-overlay">
+  <!-- LOGIN -->
+  <div id="admin-login" style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#1A1208;">
+    <div class="login-card">
+      <h2>Admin Portal</h2>
+      <p>Aitha Restaurant Management System</p>
+      <div class="form-group"><label>Username</label><input type="text" id="admin-user" placeholder="admin" style="background:rgba(255,255,255,0.07);border-color:rgba(201,168,76,0.25);color:#fff;width:100%;padding:0.75rem 1rem;border-radius:2px;font-family:DM Sans,sans-serif;font-size:0.9rem;border:1px solid;outline:none;"></div>
+      <div class="form-group" style="margin-top:1rem;"><label>Password</label><input type="password" id="admin-pass" placeholder="••••••••" style="background:rgba(255,255,255,0.07);border-color:rgba(201,168,76,0.25);color:#fff;width:100%;padding:0.75rem 1rem;border-radius:2px;font-family:DM Sans,sans-serif;font-size:0.9rem;border:1px solid;outline:none;" onkeypress="if(event.key==='Enter')doLogin()"></div>
+      <div class="err-msg" id="login-err">Invalid username or password</div>
+      <button class="login-btn" onclick="doLogin()">Sign In</button>
+      <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);text-align:center;margin-top:1rem;">Demo: admin / deepu2024</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="admin-dashboard" style="display:none;">
+    <div class="admin-nav">
+      <div class="logo">Deepu <span>Admin</span></div>
+      <span>Catering Management Portal</span>
+      <button class="close-admin" onclick="closeAdmin()">✕ Exit Portal</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-sidebar">
+        <div class="user-info">
+          <strong>Deepu Admin</strong>
+          <span>Administrator</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="#" class="active" onclick="showTab('dash',this)">📊 Dashboard</a></li>
+          <li><a href="#" onclick="showTab('bookings',this)">📅 Bookings</a></li>
+          <li><a href="#" onclick="showTab('payments',this)">💳 Payments</a></li>
+          <li><a href="#" onclick="showTab('menu',this)">🍽️ Menu Manager</a></li>
+          <li><a href="#" onclick="showTab('contacts',this)">✉️ Messages</a></li>
+          <li><a href="#" onclick="showTab('reports',this)">📈 Reports</a></li>
+          <li><a href="#" onclick="showTab('settings',this)">⚙️ Settings</a></li>
+        </ul>
+      </div>
+      <div class="admin-main">
+
+        <!-- DASHBOARD -->
+        <div class="admin-section active" id="tab-dash">
+          <h2>Dashboard Overview</h2>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-num">48</div><div class="stat-lbl">Total Bookings</div><div class="stat-delta">↑ 12% this month</div></div>
+            <div class="stat-card"><div class="stat-num">£38,450</div><div class="stat-lbl">Revenue (Month)</div><div class="stat-delta">↑ 8% vs last month</div></div>
+            <div class="stat-card"><div class="stat-num">7</div><div class="stat-lbl">Pending Enquiries</div><div class="stat-delta" style="color:#e65100;">↑ 3 new today</div></div>
+            <div class="stat-card"><div class="stat-num">4.9★</div><div class="stat-lbl">Average Rating</div><div class="stat-delta">Based on 214 reviews</div></div>
+          </div>
+          <div class="chart-bar-wrap">
+            <h4>Monthly Revenue (£k)</h4>
+            <div class="bar-chart">
+              <div class="bar-col"><div class="bar" style="height:55%"></div><span class="bar-lbl">Jan</span></div>
+              <div class="bar-col"><div class="bar" style="height:62%"></div><span class="bar-lbl">Feb</span></div>
+              <div class="bar-col"><div class="bar" style="height:48%"></div><span class="bar-lbl">Mar</span></div>
+              <div class="bar-col"><div class="bar" style="height:78%"></div><span class="bar-lbl">Apr</span></div>
+              <div class="bar-col"><div class="bar" style="height:85%"></div><span class="bar-lbl">May</span></div>
+              <div class="bar-col"><div class="bar" style="height:92%"></div><span class="bar-lbl">Jun</span></div>
+              <div class="bar-col"><div class="bar" style="height:100%"></div><span class="bar-lbl">Jul</span></div>
+              <div class="bar-col"><div class="bar" style="height:88%"></div><span class="bar-lbl">Aug</span></div>
+              <div class="bar-col"><div class="bar" style="height:73%"></div><span class="bar-lbl">Sep</span></div>
+              <div class="bar-col"><div class="bar" style="height:68%"></div><span class="bar-lbl">Oct</span></div>
+              <div class="bar-col"><div class="bar" style="height:76%"></div><span class="bar-lbl">Nov</span></div>
+              <div class="bar-col"><div class="bar" style="height:95%"></div><span class="bar-lbl">Dec</span></div>
+            </div>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <div class="section-header"><span style="font-size:0.85rem;font-weight:500;color:var(--dark)">Recent Bookings</span></div>
+            <table class="admin-table">
+              <thead><tr><th>Ref</th><th>Client</th><th>Event</th><th>Date</th><th>Guests</th><th>Value</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>DC-2024-048</td><td>Priya Sharma</td><td>Wedding</td><td>15 Dec 2024</td><td>280</td><td>£8,400</td><td><span class="badge badge-confirmed">Confirmed</span></td></tr>
+                <tr><td>DC-2024-047</td><td>James Mitchell</td><td>Corporate</td><td>12 Dec 2024</td><td>60</td><td>£1,800</td><td><span class="badge badge-paid">Paid</span></td></tr>
+                <tr><td>DC-2024-046</td><td>Aisha Patel</td><td>Birthday Party</td><td>8 Dec 2024</td><td>120</td><td>£3,600</td><td><span class="badge badge-pending">Pending</span></td></tr>
+                <tr><td>DC-2024-045</td><td>Robert Chen</td><td>Outdoor Event</td><td>5 Dec 2024</td><td>400</td><td>£12,800</td><td><span class="badge badge-confirmed">Confirmed</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BOOKINGS -->
+        <div class="admin-section" id="tab-bookings">
+          <div class="section-header">
+            <h2>All Bookings</h2>
+            <button class="add-btn">+ New Booking</button>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>Ref</th><th>Client</th><th>Phone</th><th>Event Type</th><th>Event Date</th><th>Guests</th><th>Value</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>DC-2024-048</td><td>Priya Sharma</td><td>07891 234567</td><td>Wedding</td><td>15 Dec 2024</td><td>280</td><td>£8,400</td><td><span class="badge badge-confirmed">Confirmed</span></td><td><button class="table-action">View</button><button class="table-action">Edit</button></td></tr>
+              <tr><td>DC-2024-047</td><td>James Mitchell</td><td>07712 345678</td><td>Corporate</td><td>12 Dec 2024</td><td>60</td><td>£1,800</td><td><span class="badge badge-paid">Paid</span></td><td><button class="table-action">View</button><button class="table-action">Edit</button></td></tr>
+              <tr><td>DC-2024-046</td><td>Aisha Patel</td><td>07823 456789</td><td>Birthday</td><td>8 Dec 2024</td><td>120</td><td>£3,600</td><td><span class="badge badge-pending">Pending</span></td><td><button class="table-action">View</button><button class="table-action">Approve</button></td></tr>
+              <tr><td>DC-2024-045</td><td>Robert Chen</td><td>07934 567890</td><td>Outdoor</td><td>5 Dec 2024</td><td>400</td><td>£12,800</td><td><span class="badge badge-confirmed">Confirmed</span></td><td><button class="table-action">View</button><button class="table-action">Edit</button></td></tr>
+              <tr><td>DC-2024-044</td><td>Fatima Khan</td><td>07645 678901</td><td>Wedding</td><td>2 Dec 2024</td><td>350</td><td>£10,500</td><td><span class="badge badge-paid">Paid</span></td><td><button class="table-action">View</button><button class="table-action">Edit</button></td></tr>
+              <tr><td>DC-2024-043</td><td>Mark Davies</td><td>07756 789012</td><td>Corporate</td><td>28 Nov 2024</td><td>45</td><td>£990</td><td><span class="badge badge-cancelled">Cancelled</span></td><td><button class="table-action">View</button><button class="table-action">Restore</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PAYMENTS -->
+        <div class="admin-section" id="tab-payments">
+          <div class="section-header">
+            <h2>Payments</h2>
+            <button class="add-btn">+ Record Payment</button>
+          </div>
+          <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
+            <div class="stat-card"><div class="stat-num">£38,450</div><div class="stat-lbl">Total Received</div></div>
+            <div class="stat-card"><div class="stat-num">£12,200</div><div class="stat-lbl">Deposits Pending</div></div>
+            <div class="stat-card"><div class="stat-num">£3,600</div><div class="stat-lbl">Outstanding Balance</div></div>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>Transaction ID</th><th>Client</th><th>Method</th><th>Amount</th><th>Date</th><th>Ref</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>TXN-0981234</td><td>Fatima Khan</td><td>💳 Stripe / Visa</td><td>£10,500</td><td>02 Dec 2024</td><td>DC-2024-044</td><td><span class="badge badge-paid">Completed</span></td></tr>
+              <tr><td>TXN-0981233</td><td>James Mitchell</td><td>🅿️ PayPal</td><td>£1,800</td><td>10 Nov 2024</td><td>DC-2024-047</td><td><span class="badge badge-paid">Completed</span></td></tr>
+              <tr><td>TXN-0981232</td><td>Priya Sharma</td><td>💳 Amex</td><td>£1,680</td><td>05 Nov 2024</td><td>DC-2024-048</td><td><span class="badge badge-confirmed">Deposit</span></td></tr>
+              <tr><td>TXN-0981231</td><td>Robert Chen</td><td>🏦 Bank Transfer</td><td>£6,400</td><td>01 Nov 2024</td><td>DC-2024-045</td><td><span class="badge badge-confirmed">Deposit</span></td></tr>
+              <tr><td>TXN-0981230</td><td>Aisha Patel</td><td>📱 Apple Pay</td><td>£720</td><td>28 Oct 2024</td><td>DC-2024-046</td><td><span class="badge badge-pending">Pending</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- MENU MANAGER -->
+        <div class="admin-section" id="tab-menu">
+          <div class="section-header">
+            <h2>Menu Manager</h2>
+            <button class="add-btn">+ Add Dish</button>
+          </div>
+          <div class="menu-cards">
+            <div class="menu-card"><div class="mc-icon">🍛</div><h4>Chicken Tikka Masala</h4><p>Creamy tomato-based curry with tandoori chicken</p><div class="mc-price">£14.50 / head</div></div>
+            <div class="menu-card"><div class="mc-icon">🍚</div><h4>Lamb Biryani</h4><p>Slow-cooked basmati rice with spiced lamb</p><div class="mc-price">£16.00 / head</div></div>
+            <div class="menu-card"><div class="mc-icon">🥗</div><h4>Grilled Salmon Salad</h4><p>Pan-seared salmon on mixed greens, lemon dressing</p><div class="mc-price">£13.50 / head</div></div>
+            <div class="menu-card"><div class="mc-icon">🥘</div><h4>Paneer Butter Masala</h4><p>Rich cashew-tomato gravy with cottage cheese</p><div class="mc-price">£11.00 / head</div></div>
+            <div class="menu-card"><div class="mc-icon">🍗</div><h4>Whole Roasted Chicken</h4><p>Herb-stuffed, slow-roasted to golden perfection</p><div class="mc-price">£18.00 / head</div></div>
+            <div class="menu-card"><div class="mc-icon">🥙</div><h4>Mixed Grill Platter</h4><p>Seekh kebabs, tandoori chicken, shish kebabs</p><div class="mc-price">£22.00 / head</div></div>
+            <div class="menu-card"><div class="mc-icon">🍮</div><h4>Gulab Jamun</h4><p>Soft milk dumplings in rose sugar syrup</p><div class="mc-price">£4.50 / head</div></div>
+            <div class="menu-card"><div class="mc-icon">🎂</div><h4>Chocolate Fondant</h4><p>Warm dark chocolate cake, vanilla ice cream</p><div class="mc-price">£6.00 / head</div></div>
+          </div>
+        </div>
+
+        <!-- MESSAGES -->
+        <div class="admin-section" id="tab-contacts">
+          <div class="section-header"><h2>Customer Messages</h2></div>
+          <table class="admin-table">
+            <thead><tr><th>From</th><th>Email</th><th>Subject</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>Sarah Johnson</td><td>sarah@email.com</td><td>Wedding enquiry for 200 guests</td><td>Today, 2:15pm</td><td><span class="badge badge-pending">Unread</span></td><td><button class="table-action">Reply</button></td></tr>
+              <tr><td>David Okafor</td><td>d.okafor@corp.com</td><td>Corporate lunch for 80 people</td><td>Today, 11:30am</td><td><span class="badge badge-pending">Unread</span></td><td><button class="table-action">Reply</button></td></tr>
+              <tr><td>Meera Nair</td><td>meera@email.com</td><td>Vegan menu options for party</td><td>Yesterday</td><td><span class="badge badge-confirmed">Replied</span></td><td><button class="table-action">View</button></td></tr>
+              <tr><td>Tom Williams</td><td>tom.w@email.com</td><td>Price enquiry - outdoor event</td><td>2 days ago</td><td><span class="badge badge-confirmed">Replied</span></td><td><button class="table-action">View</button></td></tr>
+              <tr><td>Layla Hassan</td><td>layla@email.com</td><td>Halal menu confirmation needed</td><td>3 days ago</td><td><span class="badge badge-paid">Closed</span></td><td><button class="table-action">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- REPORTS -->
+        <div class="admin-section" id="tab-reports">
+          <h2>Reports & Analytics</h2>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-num">£342,800</div><div class="stat-lbl">Annual Revenue</div><div class="stat-delta">↑ 22% YoY</div></div>
+            <div class="stat-card"><div class="stat-num">312</div><div class="stat-lbl">Events This Year</div><div class="stat-delta">↑ 18% vs last year</div></div>
+            <div class="stat-card"><div class="stat-num">£1,099</div><div class="stat-lbl">Avg Event Value</div><div class="stat-delta">↑ 5% vs last year</div></div>
+            <div class="stat-card"><div class="stat-num">94%</div><div class="stat-lbl">Client Satisfaction</div><div class="stat-delta">Based on surveys</div></div>
+          </div>
+          <table class="admin-table" style="margin-top:1.5rem;">
+            <thead><tr><th>Service Type</th><th>Events</th><th>Revenue</th><th>Avg Value</th><th>Growth</th></tr></thead>
+            <tbody>
+              <tr><td>Wedding Catering</td><td>98</td><td>£178,400</td><td>£1,820</td><td style="color:#2e7d32">↑ 28%</td></tr>
+              <tr><td>Corporate Events</td><td>124</td><td>£89,280</td><td>£720</td><td style="color:#2e7d32">↑ 15%</td></tr>
+              <tr><td>Private Parties</td><td>56</td><td>£44,800</td><td>£800</td><td style="color:#2e7d32">↑ 22%</td></tr>
+              <tr><td>Indian Cuisine</td><td>22</td><td>£19,800</td><td>£900</td><td style="color:#2e7d32">↑ 35%</td></tr>
+              <tr><td>Other Services</td><td>12</td><td>£10,520</td><td>£877</td><td style="color:#c62828">↓ 4%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="admin-section" id="tab-settings">
+          <h2>Settings</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+            <div style="background:#fff;border:1px solid #e8e0d0;border-radius:4px;padding:1.5rem;">
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--dark);margin-bottom:1.2rem;">Business Information</h3>
+              <div class="form-group"><label>Business Name</label><input type="text" value="Aitha Restaurant Ltd"></div>
+              <div class="form-group"><label>Phone</label><input type="tel" value="+44 7466216721"></div>
+              <div class="form-group"><label>Email</label><input type="email" value="d47746551@gmail.com"></div>
+              <div class="form-group"><label>Address</label><textarea>14 Spice Lane, Birmingham, B18 6HD</textarea></div>
+              <button class="submit-btn">Save Changes</button>
+            </div>
+            <div style="background:#fff;border:1px solid #e8e0d0;border-radius:4px;padding:1.5rem;">
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--dark);margin-bottom:1.2rem;">Payment Settings</h3>
+              <div class="form-group"><label>Stripe API Key</label><input type="text" value="sk_live_••••••••••••••••" placeholder="Stripe Secret Key"></div>
+              <div class="form-group"><label>PayPal Client ID</label><input type="text" value="AaB••••••••••••••••" placeholder="PayPal Client ID"></div>
+              <div class="form-group"><label>Deposit Percentage</label><input type="number" value="20">%</div>
+              <div class="form-group"><label>Currency</label><select><option>GBP (£)</option><option>USD ($)</option><option>EUR (€)</option></select></div>
+              <button class="submit-btn">Save Payment Settings</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openAdmin() {
+  document.getElementById('admin-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  document.getElementById('admin-login').style.display = 'flex';
+  document.getElementById('admin-dashboard').style.display = 'none';
+}
+function closeAdmin() {
+  document.getElementById('admin-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function doLogin() {
+  const u = document.getElementById('admin-user').value;
+  const p = document.getElementById('admin-pass').value;
+  if (u === 'admin' && p === 'deepu2024') {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-dashboard').style.display = 'block';
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+    setTimeout(() => document.getElementById('login-err').style.display = 'none', 3000);
+  }
+}
+function showTab(id, el) {
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  return false;
+}
+function submitBooking() {
+  document.getElementById('booking-success').style.display = 'block';
+  setTimeout(() => document.getElementById('booking-success').style.display = 'none', 4000);
+}
+function submitContact() {
+  document.getElementById('contact-success').style.display = 'block';
+  setTimeout(() => document.getElementById('contact-success').style.display = 'none', 4000);
+}
+function submitPayment() {
+  alert('✓ Payment processed successfully! Reference: DC-PAY-' + Math.floor(Math.random()*90000+10000));
+}
+function selectPay(el) {
+  document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('active'));
+  el.classList.add('active');
+}
+document.querySelectorAll('.sidebar-menu a').forEach(a => {
+  a.addEventListener('click', function(e) { e.preventDefault(); });
+});
+</script>
+</body>
+</html>
